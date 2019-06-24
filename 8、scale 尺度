@@ -1,0 +1,19 @@
+import tkinter
+
+window = tkinter.Tk()
+window.title('6')
+window.geometry('200x200')
+
+def print_selection(v):
+    label.config(text = 'you have select ' + v)
+
+var = tkinter.StringVar()
+label = tkinter.Label(window,bg='yellow',width=20,text='')
+label.pack()
+
+scale = tkinter.Scale(window,label='try me',from_=5,to=11,length=200,showvalue=0,
+                      tickinterval=3,resolution=0.01,
+                      orient=tkinter.HORIZONTAL,command=print_selection)
+scale.pack()
+
+window.mainloop()
