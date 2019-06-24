@@ -1,0 +1,24 @@
+import tkinter
+
+on = False
+def hit_me():
+    global on
+    if on == False:
+        on = True
+        var.set('you hit me')
+    else:
+        on =False
+        var.set('')
+
+window = tkinter.Tk()
+window.title('1')
+window.geometry('200x100')
+
+var = tkinter.StringVar()
+label = tkinter.Label(window,text='oMG!this is Tkinter',bg='green',font=('Arial,12'),
+                      textvariable=var,width=20,height=2)
+label.pack()   #label.place()
+button = tkinter.Button(window,text='hit me',width=10,height=2,
+                        command=hit_me)
+button.pack()
+window.mainloop()
