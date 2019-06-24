@@ -1,0 +1,29 @@
+import tkinter
+
+def print_selection():
+    value = listBox.get(listBox.curselection())
+    var.set(value)
+
+
+window = tkinter.Tk()
+window.title('4')
+window.geometry('200x200')
+
+var = tkinter.StringVar()
+label = tkinter.Label(window,bg='yellow',width=4,textvariable=var)
+label.pack()
+
+button1 = tkinter.Button(window,text='print selection',width=15,
+                         height=2,command=print_selection)
+button1.pack()
+
+var2 = tkinter.StringVar()
+var2.set((11,22,33,44))
+listBox = tkinter.Listbox(window,listvariable=var2)
+list_item = [1,2,3,4]
+for item in list_item:
+    listBox.insert('end',item)
+listBox.insert(1,'first') #listbox.delete(1)  #删除index为1的内容
+
+listBox.pack()
+window.mainloop()
