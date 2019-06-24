@@ -1,0 +1,107 @@
+#########################################################
+import threading
+import time
+def thread_job():
+    print('T1 start\n')
+    for i in range(10):
+        time.sleep(0.1)
+    print('T1 finished\n')
+def T2_job():
+    print('T2 start\n')
+    print('T2 finished\n')
+def main():
+    add_threading = threading.Thread(target=thread_job,name='T1')
+    thread2 = threading.Thread(target=T2_job,name='T2')
+    add_threading.start()
+    thread2.start()
+    add_threading.join()
+    print('all done\n')
+    # print(threading.active_count())
+    # print(threading.enumerate())
+    # print(threading.current_thread())
+if __name__ == '__main__':
+    print(__name__)
+    main()
+#####################################################
+from queue import Queue
+def job(l,q):
+    for i in range(len(l)):
+        l[i] = l[i]**2
+    q.put(l)
+
+def multithreading():
+  q = Queue()
+  threads = []
+  result = []
+  data = [[1,1,1],[2,2,2],[3,3,3],[4,4,4]]
+  for i in range (len(data)):
+      t = threading.Thread(target=job,args=(data[i],q))
+      t.start()
+      threads.append(t)
+  for thread in threads:
+      thread.join()
+  for i in range(4):
+      result.append(q.get())
+  print(result)
+
+if __name__ == '__main__':
+    multithreading()
+#####################################################
+from queue import Queue
+import copy
+import time
+
+def job(l,q):
+    res = sum(l)
+    q.put(res)
+
+def multiThreading(l):
+    threads = []
+    q = Queue()
+    for i in range(4):
+        t = threading.Thread(target=job,args=(copy.copy(l),q),name='T%i' % i)
+        t.start()
+        threads.append(t)
+    [t.join() for t in threads]
+    total = 0
+    for _ in range(4):
+        total += q.get()
+    print(total)
+
+def normal(l):
+    total = sum(l)
+    print(total)
+
+if __name__ == '__main__':
+    l = list(range(1000000))
+    s_t = time.time()
+    normal(l*4)
+    print('normal:',time.time()-s_t)
+    s_t = time.time()
+    multiThreading(l)
+    print('multithreading:',time.time()-s_t)
+#####################################################
+def job():
+    global A,lock
+    lock.acquire()
+    for i in range(10):
+        A += 1
+        print('job1',A)
+    lock.release()
+def job2():
+    global A,lock
+    lock.acquire()
+    for i in range(10):
+        A += 10
+        print('job2',A)
+    lock.release()
+
+if __name__ == '__main__':
+    lock = threading.Lock()
+    A = 0
+    t1 = threading.Thread(target=job)
+    t2 = threading.Thread(target=job2)
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
