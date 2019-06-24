@@ -1,0 +1,31 @@
+import time
+print(time.localtime())
+
+import variable
+variable.openFile()
+
+while True:
+    num = int(input('please input number'))
+    if num == 1:
+        print('num1')
+    else:
+        print('ppp')
+    print('ooo')
+    break
+######################################
+try:
+    file = open('txt.txt','r')
+    print(file.read())
+except Exception as e:
+    print(e)
+    text = 'one\ntwo\nthree'
+    res = input('Do you want to creat a new file')
+    if res == 'y':
+        file = open('txt.txt','w')
+        file.write(text)
+        file.close()
+        fileReader = open('txt.txt','r')
+        print(fileReader.read())
+        fileReader.close()
+    else:
+        pass
