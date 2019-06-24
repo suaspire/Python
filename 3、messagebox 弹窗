@@ -1,0 +1,17 @@
+import tkinter as tk
+from tkinter import messagebox
+window = tk.Tk()
+window.title('11')
+window.geometry('200x200')
+def hit_me():
+    # tk.messagebox.showinfo(title='Hi',message='hahahaha')   # return 'ok'
+    # tk.messagebox.showwarning(title='Warn', message='Warning')
+    # tk.messagebox.showerror(title='Error', message='Error')
+    # flag = tk.messagebox.askquestion(title='Hello', message='ooooo')  #return yes no
+    # print(flag)
+    # tk.messagebox.askyesno(title='Hello', message='ooooo')  #return Ture, False
+    # # tk.messagebox.asktrycancel(title='Hello', message='ooooo')   #return Ture, False
+    tk.messagebox.askokcancel(title='Hello', message='ooooo') #return Ture, False
+tk.Button(window, text='hit me', command=hit_me).pack()
+
+window.mainloop()
