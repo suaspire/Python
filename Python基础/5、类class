@@ -1,0 +1,23 @@
+class Calculator:
+   name = 'good Calculator'
+   price = 18
+   def add(self,x,y):
+       print(self.name)
+       print (x+y)
+
+   def minus(self,x,y):
+       print (x-y)
+
+cal = Calculator()
+cal.add(1,2)
+cal.minus(1,2)
+###########################################
+class Calculator:
+   name='Good'
+   price=18
+   def __init__(self,name,price):
+       self.name=name
+       self.price=price
+cal= Calculator('su',10)
+print(cal.name)
+print(cal.price)
