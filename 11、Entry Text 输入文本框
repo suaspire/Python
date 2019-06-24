@@ -1,0 +1,26 @@
+import tkinter
+
+def insert_point():
+    var = entry.get()
+    text.insert('insert',var)
+def insert_end():
+    var = entry.get()
+    text.insert('end',var)
+
+window = tkinter.Tk()
+window.title('2')
+window.geometry('200x200')
+
+entry = tkinter.Entry(window,show=None)
+entry.pack()
+
+button1 = tkinter.Button(window,text='insert point',width=15,
+                         height=2,command=insert_point)
+button1.pack()
+
+button2 = tkinter.Button(window,text='insert end',command=insert_end)
+button2.pack()
+text = tkinter.Text(window,height=2)
+text.pack()
+
+window.mainloop()
