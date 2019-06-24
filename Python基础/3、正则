@@ -1,0 +1,31 @@
+import re
+print(re.search(r"\bruns\b",'dog runs to cat'))
+print(re.search(r"Mon(day)?",'Monday'))
+print(re.search(r"Mon(day)?",'Mon'))
+text = 'alpha. beta....gamma delta'  #测试用的字符串
+pat = '[a-zA-Z]+'
+print(re.findall(pat, text)) #查找所有单词)
+##################################################
+import threading
+import time
+def thread_job():
+    print('T1 start\n')
+    for i in range(10):
+        time.sleep(0.1)
+    print('T1 finished\n')
+def T2_job():
+    print('T2 start\n')
+    print('T2 finished\n')
+def main():
+    add_threading = threading.Thread(target=thread_job,name='T1')
+    thread2 = threading.Thread(target=T2_job,name='T2')
+    add_threading.start()
+    thread2.start()
+    add_threading.join()
+    print('all done\n')
+    # print(threading.active_count())
+    # print(threading.enumerate())
+    # print(threading.current_thread())
+if __name__ == '__main__':
+    print(__name__)
+    main()
