@@ -1,0 +1,29 @@
+import tkinter
+
+window = tkinter.Tk()
+window.title('7')
+window.geometry('200x200')
+
+def print_selection():
+   if(var1.get()==1) & (var2.get()==0):
+       label.config(text='I love only Python')
+   elif(var1.get()==0) & (var2.get()==1):
+       label.config(text='I love only C++')
+   elif(var1.get()==0) & (var2.get()==0):
+       label.config(text='I do not love either')
+   else:
+       label.config(text='I love both')
+
+var = tkinter.StringVar()
+label = tkinter.Label(window,bg='yellow',width=20,text='empty')
+label.pack()
+
+var1 = tkinter.IntVar()
+var2 = tkinter.IntVar()
+checkButton1 = tkinter.Checkbutton(window,text='python',variable=var1,
+                                   onvalue=1,offvalue=0,command=print_selection)
+checkButton2 = tkinter.Checkbutton(window,text='c++',variable=var2,
+                                   onvalue=1,offvalue=0,command=print_selection)
+checkButton1.pack()
+checkButton2.pack()
+window.mainloop()
