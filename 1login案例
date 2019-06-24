@@ -1,0 +1,94 @@
+#### login 登录1
+import tkinter
+import pickle
+from tkinter import messagebox
+window = tkinter.Tk()
+window.title('login')
+window.geometry('450x300')
+
+def user_login():
+    username = var_username.get()
+    password = var_password.get()
+    # print(username,password)
+    try:
+        with open('userinfo.pickle','rb') as userfile:
+            userinfo = pickle.load(userfile)
+    except FileNotFoundError:
+        with open('userinfo.pickle','wb')as userfile:
+            userinfo = {'admin':'admin'}
+            pickle.dump(userinfo,userfile)
+    if username in userinfo:
+        if password == userinfo[username]:
+            tkinter.messagebox.showinfo('Welcome','How are you?'+username)
+        else:
+            tkinter.messagebox.showerror('Error','your password is wrong,try again!')
+    else:
+        is_signup = tkinter.messagebox.askyesno('Welcome','You have not sign up yet. Sign up today?')
+
+        if is_signup:
+            user_signup()
+    pass
+def user_signup():
+    def signUp_su_python():
+        newUsername = new_username.get()
+        newPassword = new_password.get()
+        newConfirmpassword = new_confirm_password.get()
+        try:
+            with open('userinfo.pickle', 'rb') as userfile:
+                users = pickle.load(userfile)
+                if newPassword != newConfirmpassword:
+                    tkinter.messagebox.showerror('Erroe', 'Password and confirm password must be the same')
+                elif newUsername in users:
+                    tkinter.messagebox.showerror('Error', 'The user has already existed')
+                else:
+                    users[newUsername] = newPassword
+                    with open('userinfo.pickle', 'wb')as userfile:
+                        userinfo = {'admin': 'admin'}
+                        pickle.dump(users, userfile)
+                    tkinter.messagebox.showinfo('Welcome', 'you have already becomed user!')
+                    window_signup.destroy()
+        except FileNotFoundError as e:
+            print(e)
+
+    window_signup = tkinter.Toplevel(window)
+    window_signup.title('window Sign up')
+    window_signup.geometry('350x200')
+    tkinter.Label(window_signup, text='User name:').place(x=10, y=10)
+    tkinter.Label(window_signup, text='Password:').place(x=10, y=50)
+    tkinter.Label(window_signup, text='Confirm pwd:').place(x=10, y=90)
+
+    new_username = tkinter.StringVar()
+    new_password = tkinter.StringVar()
+    new_confirm_password = tkinter.StringVar()
+
+    new_username = tkinter.Entry(window_signup, textvariable=new_username)
+    new_username.place(x=150, y=10)
+    new_password = tkinter.Entry(window_signup, show='*', textvariable=new_password)
+    new_password.place(x=150, y=50)
+    confirm_password = tkinter.Entry(window_signup, show='*', textvariable=new_confirm_password)
+    confirm_password.place(x=150, y=90)
+
+    tkinter.Button(window_signup, text='Login', width=10, command=signUp_su_python).place(x=140, y=130)
+
+
+#welcome image
+canvas = tkinter.Canvas(window,height=200,width=500)
+image_file = tkinter.PhotoImage(file='welcome.gif')
+image = canvas.create_image(0,0,anchor='nw',image=image_file)
+canvas.pack(side='top')
+
+#userinfo
+tkinter.Label(window,text='User name:').place(x=50,y=150)
+tkinter.Label(window,text='Password').place(x=50,y=190)
+
+var_username = tkinter.StringVar()
+var_username.set('example@python.com')
+var_password = tkinter.StringVar()
+entry_username = tkinter.Entry(window,textvariable=var_username)
+entry_username.place(x=160,y=150)
+entry_password = tkinter.Entry(window,show='*',textvariable=var_password)
+entry_password.place(x=160,y=190)
+
+button1 = tkinter.Button(window,text='Login',width=10,command=user_login).place(x=80,y=230)
+button2 = tkinter.Button(window,text='Sign up',width=10,command=user_signup).place(x=240,y=230)
+window.mainloop()
