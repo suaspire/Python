@@ -1,0 +1,24 @@
+import tkinter
+
+def print_selection():
+    label.config(text='you hane selected' + var.get())
+
+window = tkinter.Tk()
+window.title('5')
+window.geometry('200x200')
+
+var = tkinter.StringVar()
+label = tkinter.Label(window,bg='yellow',width=20,text='empty')
+label.pack()
+
+r1 = tkinter.Radiobutton(window,text='Option A',variable=var,value='A',
+                         command=print_selection)
+r1.pack()
+r2 = tkinter.Radiobutton(window,text='Option B',variable=var,value='B',
+                         command=print_selection)
+r2.pack()
+r3 = tkinter.Radiobutton(window,text='Option C',variable=var,value='C',
+                         command=print_selection)
+r3.pack()
+
+window.mainloop()
