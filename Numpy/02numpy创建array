@@ -1,0 +1,17 @@
+import numpy as np
+
+a = np.array([2,3,4],dtype=np.int)
+b = np.array([2,3,4],dtype=np.float)
+print(a)
+print(a.dtype)
+print(b.dtype)
+c = np.zeros((3,4))   #零矩阵 np.empty()   np.ones()
+print('c:',c)
+d = np.arange(10,20,2)
+print('d:',d)
+
+e = np.arange(12).reshape((3,4))
+print('e:',e)
+
+f = np.linspace(1,10,5)    #生成一个五段的线段
+print('f:',f)
