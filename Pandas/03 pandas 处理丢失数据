@@ -1,0 +1,12 @@
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range('20190624',periods=6)
+df = pd.DataFrame(np.arange(24).reshape((6,4)),index=dates,columns=['A','B','C','D'])
+df.iloc[0,1] = np.nan
+df.iloc[1,2] = np.nan
+print('df\n',df)
+print(df.dropna(axis=0,how='any'))   #how={'any','all'} all表示在一行或一列中都是NAN时才会丢掉数据
+print(df.fillna(value=0))   #将nan数据变为 指定数
+print(df.isnull())    # 缺失数据 的话显示 True 反之False
+print(np.any(df.isnull()) == True)  #判断是否有丢失的数据
