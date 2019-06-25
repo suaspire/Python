@@ -1,0 +1,22 @@
+import numpy as np
+
+# a = np.array([1,1,1])
+# b = np.array([2,2,2])
+# print('np.vstack():\n',np.vstack((a,b)))   #上下合并
+# print('np.hstack():\n',np.hstack((a,b)))   #左右合并
+# print('a.shape:',a.shape,'b.shape:',b.shape)
+# print('a[np.newaxis,:]:',a[np.newaxis,:])   #将这个序列转化为了一个1行3列的矩阵
+# print('a[:,np.newaxis]:\n',a[:,np.newaxis])  #将这个序列转化为了一个3行1列的矩阵
+# # print(a[np.newaxis,:].dot(a[:,np.newaxis]))
+# # print(a[:,np.newaxis].dot(a[np.newaxis,:]))
+# A = np.array([1,1,1])[:,np.newaxis]
+# B = np.array([2,2,2])[:,np.newaxis]
+# c = np.concatenate((A,B),axis=1)
+# print('np.concatenate():\n',c)
+
+a = np.arange(12).reshape((3,4))
+print('a:\n',a)
+print('np.split(a,2,axis=1):\n',np.split(a,2,axis=1))             #进行等量分割
+print('np.array_split(a,3,axis=1):\n',np.array_split(a,3,axis=1)) #进行不等量分割
+print('np.vsplit(a,3):\n',np.vsplit(a,3))
+print('np.hsplit(a,2):\n',np.hsplit(a,2))
