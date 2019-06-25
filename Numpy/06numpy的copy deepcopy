@@ -1,0 +1,6 @@
+import numpy as np
+import copy
+a = np.arange(4)
+b = copy.deepcopy(a)
+print(b is a)
+print(id(a),id(b))
